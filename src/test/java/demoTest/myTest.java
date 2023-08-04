@@ -1,20 +1,11 @@
 package demoTest;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.Platform;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import weathershopperpageobjects.BaseTest;
 import weathershopperpageobjects.actions.*;
 
-import java.net.MalformedURLException;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
@@ -22,7 +13,7 @@ import java.util.HashMap;
 public class myTest extends BaseTest {
 
     @Test
-    public void newTest() throws MalformedURLException {
+    public void newTest() {
         WebDriver driver;
         driver = initializeDriver();
         driver.get("http://weathershopper.pythonanywhere.com/");
@@ -36,7 +27,7 @@ public class myTest extends BaseTest {
              moisturizerPage.selectLessExpensiveValue(sortedResultsValue,"Almond");
              CommonPage commonPage = new CommonPage(driver);
              CartPage cartPage = commonPage.navigateToCartPage();
-             assertEquals(cartPage.countElements("//tr//td[1]"),2);
+             cartPage.assertsOnUI();
              editCardCredentials(cartPage);
 
          } else if (landingPage.getTemperatureValue()>34) {
@@ -47,7 +38,7 @@ public class myTest extends BaseTest {
              sunscreensPage.selectLessExpensiveValue(sortedResultsValue,"SPF-30");
              CommonPage commonPage = new CommonPage(driver);
              CartPage cartPage = commonPage.navigateToCartPage();
-             assertEquals(cartPage.countElements("//tr//td[1]"),2);
+             cartPage.assertsOnUI();
              editCardCredentials(cartPage);
          } else {
              System.out.println("Do not test anything");

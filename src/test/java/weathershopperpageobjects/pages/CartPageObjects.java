@@ -13,6 +13,10 @@ public class CartPageObjects extends HtmlPart {
 
     @FindBy(xpath = "//button/span[contains(text(),\"Pay with Card\")]")
     protected WebElement payWithCardButton;
+
+    @FindBy(xpath = "//tr[th=\"Item\" and th=\"Price\"]")
+    protected WebElement tableHeader;
+
     public CartPageObjects(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
